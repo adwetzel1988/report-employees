@@ -28,19 +28,19 @@
                                 <h5 class="card-title">Personal Information</h5>
                                 <div class="mb-3">
                                     <label for="first_name" class="form-label">First Name</label>
-                                    <input type="text" class="form-control" id="first_name" name="first_name">
+                                    <input type="text" class="form-control" id="first_name" name="first_name" value="{{ old('first_name') }}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="last_name" class="form-label">Last Name</label>
-                                    <input type="text" class="form-control" id="last_name" name="last_name">
+                                    <input type="text" class="form-control" id="last_name" name="last_name" value="{{ old('last_name') }}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="phone" class="form-label">Phone Number</label>
-                                    <input type="tel" class="form-control" id="phone" name="phone">
+                                    <input type="tel" class="form-control" id="phone" name="phone" value="{{ old('phone') }}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email Address</label>
-                                    <input type="email" class="form-control" id="email" name="email">
+                                    <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="password" class="form-label">Password</label>
@@ -56,19 +56,19 @@
                                 <h5 class="card-title">Address Information</h5>
                                 <div class="mb-3">
                                     <label for="address" class="form-label">Address</label>
-                                    <input type="text" class="form-control" id="address" name="address">
+                                    <input type="text" class="form-control" id="address" name="address" value="{{ old('address') }}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="city" class="form-label">City</label>
-                                    <input type="text" class="form-control" id="city" name="city">
+                                    <input type="text" class="form-control" id="city" name="city" value="{{ old('city') }}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="state" class="form-label">State</label>
-                                    <input type="text" class="form-control" id="state" name="state">
+                                    <input type="text" class="form-control" id="state" name="state" value="{{ old('state') }}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="zip" class="form-label">Zip Code</label>
-                                    <input type="text" class="form-control" id="zip" name="zip">
+                                    <input type="text" class="form-control" id="zip" name="zip" value="{{ old('zip') }}">
                                 </div>
                             </div>
                         </div>
@@ -80,16 +80,16 @@
                         <h5 class="card-title">Complaint Details</h5>
                         <div class="mb-3" id="custom_type_div" style="display: none;">
                             <label for="custom_type" class="form-label">Custom Type</label>
-                            <input type="text" class="form-control" id="custom_type" name="custom_type">
+                            <input type="text" class="form-control" id="custom_type" name="custom_type" value="{{ old('custom_type') }}">
                         </div>
                         <div class="mb-3">
                             <label for="description" class="form-label">Complaint Description</label>
-                            <textarea class="form-control" id="description" name="description" rows="5" required></textarea>
+                            <textarea class="form-control" id="description" name="description" rows="5" required>{{ old('description') }}</textarea>
                         </div>
                         <div class="mb-3">
                             <label for="incident_date" class="form-label">Incident Date and Time</label>
                             <div style="max-width: 250px; display: inline-block;">
-                                <input type="datetime-local" class="form-control" id="incident_date" name="incident_date" required>
+                                <input type="datetime-local" class="form-control" id="incident_date" name="incident_date" value="{{ old('incident_date') }}" required>
                             </div>
                         </div>
                     </div>
@@ -100,7 +100,11 @@
                         <h5 class="card-title">Employee Information</h5>
                         <div class="mb-3">
                             <label for="officer_name" class="form-label">Employee Name</label>
-                            <input type="text" class="form-control" id="officer_name" name="officer_name">
+                            <input type="text" class="form-control" id="officer_name" name="officer_name" value="{{ old('officer_name') }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="officer_division" class="form-label">Employee Location</label>
+                            <input type="text" class="form-control" id="officer_division" name="officer_division" value="{{ old('employee_location') }}">
                         </div>
                     </div>
                 </div>
@@ -189,15 +193,15 @@
       newWitnessDiv.innerHTML = `
                 <div class="col-md-4">
                     <label for="witness_name_${witnessIndex}" class="form-label">Witness Name</label>
-                    <input type="text" class="form-control" id="witness_name_${witnessIndex}" name="witnesses[${witnessIndex}][name]">
+                    <input type="text" class="form-control" id="witness_name_${witnessIndex}" name="witnesses[${witnessIndex}][name]" value="{{ old('witnesses.${witnessIndex}.name') }}">
                 </div>
                 <div class="col-md-3">
                     <label for="witness_contact_${witnessIndex}" class="form-label">Contact Number</label>
-                    <input type="tel" class="form-control" id="witness_contact_${witnessIndex}" name="witnesses[${witnessIndex}][contact]">
+                    <input type="tel" class="form-control" id="witness_contact_${witnessIndex}" name="witnesses[${witnessIndex}][contact]" value="{{ old('witnesses.${witnessIndex}.contact') }}">
                 </div>
                 <div class="col-md-3">
                     <label for="witness_email_${witnessIndex}" class="form-label">Email Address</label>
-                    <input type="email" class="form-control" id="witness_email_${witnessIndex}" name="witnesses[${witnessIndex}][email]">
+                    <input type="email" class="form-control" id="witness_email_${witnessIndex}" name="witnesses[${witnessIndex}][email]" value="{{ old('witnesses.${witnessIndex}.email') }}">
                 </div>
                 <div class="col-md-1 d-flex align-items-center justify-content-center">
                     <button type="button" class="btn btn-danger delete-witness">Delete</button>

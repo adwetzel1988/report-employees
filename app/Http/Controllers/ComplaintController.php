@@ -42,12 +42,7 @@ class ComplaintController extends Controller
             'witnesses.*.name' => 'nullable|string|max:255',
             'witnesses.*.contact' => 'nullable|string|max:255',
             'witnesses.*.email' => 'nullable|email|max:255',
-            'signature' => 'required|string|max:255',
         ]);
-
-        if (strtolower($validatedData['complaint_type']) === 'others') {
-            $validatedData['complaint_type'] = $validatedData['custom_type'];
-        }
 
         if (Auth::check()) {
             $userId = Auth::id();
@@ -87,17 +82,13 @@ class ComplaintController extends Controller
             'complaint_number' => 'C-' . Str::random(8),
             'description' => $validatedData['description'],
             'incident_date' => $validatedData['incident_date'],
-            'complaint_type' => $validatedData['complaint_type'],
             'status' => 'pending',
-            'signature' => $validatedData['signature'],
         ]);
 
         Officer::create([
             'complaint_id' => $complaint->id,
             'name' => $validatedData['officer_name'],
-            'rank' => $validatedData['officer_rank'],
             'division' => $validatedData['officer_division'],
-            'badge_number' => $validatedData['officer_badge_number'],
         ]);
 
         if ($request->hasFile('attachments')) {

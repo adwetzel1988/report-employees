@@ -121,4 +121,20 @@ class AdminController extends Controller
         }
 
         return redirect()->back()->with('success', 'Note added successfully.');
-    }}
+    }
+
+    public function addDiscipline(Request $request, Complaint $complaint)
+    {
+        $validatedData = $request->validate([
+            'discipline' => 'required|string',
+            'discipline_action_taken' => 'required|string',
+        ]);
+
+        $complaint->update([
+            'discipline' => $validatedData['discipline'],
+            'discipline_action_taken' => $validatedData['discipline_action_taken'],
+        ]);
+
+        return redirect()->back()->with('success', 'Discipline added successfully.');
+    }
+}

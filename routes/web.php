@@ -63,4 +63,5 @@ Route::middleware(['auth', 'role:admin,subadmin'])->group(function () {
     Route::patch('admin/complaints/{complaint}/status', [AdminController::class, 'updateStatus'])->name('admin.complaints.update-status');
     Route::post('admin/complaints/{complaint}/notes', [AdminController::class, 'addNote'])->name('admin.complaints.add-note');
     Route::post('admin/complaints/{complaint}/notes', [AdminController::class, 'addNote'])->name('complaints.add-note');
+    Route::post('admin/complaints/{complaint}/discipline', [AdminController::class, 'addDiscipline'])->name('admin.complaints.add-discipline');
 });

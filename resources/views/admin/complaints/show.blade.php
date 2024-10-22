@@ -39,6 +39,8 @@
                     <div class="col-md-6">
                         <h6 class="">Employee Information</h6>
                         <p class="card-text"><strong>Name:</strong> {{ $complaint->officer->name ?? 'Not Provided' }}</p>
+                        <p class="card-text"><strong>Discipline:</strong> {{ $complaint->discipline }}</p>
+                        <p class="card-text"><strong>Action Taken:</strong> {{ $complaint->discipline_action_taken }}</p>
                     </div>
                 </div>
 
@@ -80,6 +82,25 @@
                 </div>
             </div>
         @endif
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <h2 class="card-title mb-3">Discipline</h2>
+                <form action="{{ route('admin.complaints.add-discipline', $complaint) }}" method="POST">
+                    @csrf
+                    @method('POST')
+                    <div class="mb-3">
+                        <label for="discipline" class="form-label">Discipline</label>
+                        <input type="text" class="form-control" id="discipline" name="discipline" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="discipline_action_taken" class="form-label">Action Taken</label>
+                        <textarea class="form-control" id="discipline_action_taken" name="discipline_action_taken" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </form>
+            </div>
+        </div>
 
         @if($complaint->status !== 'completed')
             <div class="card mb-4">
